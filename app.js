@@ -162,7 +162,7 @@ function renderOrden(orden) {
 
 /* navegación */
 function ocultarTodo() {
-  ["bienvenida","menuPrincipal","nuevaOrden","menuOrdenes","menuCocina"].forEach(id =>
+  ["bienvenida","menuPrincipal"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
 }
@@ -183,7 +183,6 @@ function irAMenu() {
 
 function irDirectoAMenu() {
   ocultarTodo();
-  document.getElementById("menuPrincipal").classList.remove("hidden");
 }
 
 function toggleUsuarios() {
