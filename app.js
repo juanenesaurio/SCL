@@ -162,7 +162,7 @@ function renderOrden(orden) {
 
 /* navegación */
 function ocultarTodo() {
-  ["bienvenida","menuPrincipal","nuevaOrden","menuOrdenes","barraUsuarios","menuCocina"].forEach(id =>
+  ["bienvenida","menuPrincipal","nuevaOrden","menuOrdenes","menuCocina"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
 }
@@ -179,6 +179,11 @@ function irAMenu() {
     ocultarTodo();
     document.getElementById("menuPrincipal").classList.remove("hidden");
   }
+}
+
+function irDirectoAMenu() {
+  ocultarTodo();
+  document.getElementById("menuPrincipal").classList.remove("hidden");
 }
 
 function toggleUsuarios() {
