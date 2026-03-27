@@ -26,7 +26,7 @@
       border-radius: 12px;
       animation: parpadeo 1.4s ease-in-out infinite;
       transition: background-color 0.2s ease, transform 0.2s ease;
-      transform: scale(1.30);
+      transform: scale(1.15);
     }
     .boton-vino:hover {
       background-color: #6E1F2B;
@@ -34,6 +34,14 @@
     }
     .boton-vino:active {
       transform: scale(0.98);
+    }
+
+    .titulo-vino {
+      color: #8B2E3C;
+      font-family: 'Trajan Pro', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
     }
 
     @keyframes parpadeo {
@@ -48,16 +56,17 @@
 
 <!-- ================= BIENVENIDA ================= -->
 <section id="bienvenida"
-  class="min-h-screen flex items-center justify-center px-6"
+  class="min-h-screen flex flex-col items-center justify-center px-6"
   style="background-image: url('assets/img/vertical fondo.jpeg'); background-size: cover; background-position: 7% center;">
+
+  <h1 class="titulo-vino">Bienvenido al sistema de control<br>contable de la lechería 🐄 🥛</h1>
 
   <button type="button" onclick="irAMenu()"
     class="boton-vino text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium text-sm px-4 py-2.5 text-center leading-5">
 
-    Bienvenido al sistema de control<br>
-    contable de la lechería 🐄 🥛<br><br>
     <span class="text-sm opacity-70">
       Es sólo otro juego de números, no te pierdas, suerte<br>
+      toca para continuar<br>
       <span class="text-3xl">👁️</span>
     </span>
   </button>
