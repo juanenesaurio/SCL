@@ -36,6 +36,22 @@
       transform: scale(0.98);
     }
 
+    /* botón vino sin parpadeo para menu principal */
+    .boton-vino-sin-parpadeo {
+      background-color: #8B2E3C;
+      color: #ffffff;
+      border-radius: 12px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      transform: scale(1.035);
+    }
+    .boton-vino-sin-parpadeo:hover {
+      background-color: #6E1F2B;
+      transform: scale(1.02);
+    }
+    .boton-vino-sin-parpadeo:active {
+      transform: scale(0.98);
+    }
+
     .titulo-vino {
       color: #8B2E3C;
       font-family: 'Trajan Pro', serif;
@@ -73,9 +89,17 @@
   </button>
 </section>
 
-<!-- ================= PRODUCTOS ================= -->
-<section id="productos" class="hidden min-h-screen" style="background-color: #E8DCC8;">
-  <!-- Contenido del menú de productos aquí -->
+<!-- ================= MENU PRINCIPAL ================= -->
+<section id="menuPrincipal" class="hidden min-h-screen flex flex-col items-center justify-center gap-6 px-6" style="background-color: #E8DCC8;">
+  <h2 class="text-3xl font-bold mb-6 text-[#8B2E3C]">Menú Principal</h2>
+
+  <button onclick="irAProductos()" class="boton-vino-sin-parpadeo text-white text-xl px-6 py-3 w-full max-w-md">
+    🍔 Productos
+  </button>
+
+  <button onclick="irALoVendido()" class="boton-vino-sin-parpadeo text-white text-xl px-6 py-3 w-full max-w-md">
+    💰 Lo vendido
+  </button>
 </section>
 
 <script src="app.js"></script>
