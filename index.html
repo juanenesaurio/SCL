@@ -75,77 +75,12 @@
 
 
 
-<!-- ================= BIENVENIDA USUARIO ================= -->
-<section id="bienvenidaUsuario" class="hidden min-h-screen flex flex-col items-center justify-center gap-6 px-6">
-  <div class="w-full max-w-md bg-gray-800 border border-gray-600 rounded-3xl p-8 text-xl font-semibold text-center">
-    <span id="mensajeBienvenidaUsuario"></span>
-    <br><br>
-    <button onclick="continuarMenuPrincipal()" class="mt-4 w-full bg-green-600 py-4 rounded-xl text-xl font-bold active:scale-95 transition">Continuar</button>
-  </div>
-</section>
-
-<!-- ================= MENU PRINCIPAL ================= -->
-<section id="menuPrincipal"
-  class="hidden min-h-screen flex flex-col items-center justify-center gap-6 px-6"
-  style="background-image: url('assets/img/SCL wallpaper.jpeg'); background-size: cover; background-position: center;">
-
-</section>
 
 
 
 
-<!-- Modal de detalles de orden -->
-<div id="modalDetalles" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
-  <div class="bg-white text-gray-900 rounded-xl p-6 max-w-md w-full max-h-96 overflow-y-auto">
-    <div id="detallesContenido"></div>
-    
-    <!-- Observación -->
-    <div id="seccionObservacion" class="mt-4 p-3 bg-gray-100 rounded-xl hidden">
-      <label class="text-sm font-semibold block mb-2">Observación:</label>
-      <div class="flex gap-2">
-        <textarea id="textareaObservacion" placeholder="Agregar observación..." class="flex-1 p-2 rounded bg-white text-gray-900 text-sm" rows="2"></textarea>
-        <button onclick="confirmarObservacion()" class="px-3 py-2 bg-green-600 text-white rounded font-semibold">Confirmar</button>
-      </div>
-      <div id="observacionGuardada" class="text-xs text-gray-600 mt-2 hidden"></div>
-    </div>
-    
-    <div id="botonesDetalles" class="mt-4 space-y-2">
-      <div class="flex gap-2">
-        <button id="btnAgregarProductos" onclick="abrirModoEdicion()" class="flex-1 bg-orange-500 text-white py-2 rounded-xl hidden">Agregar productos</button>
-        <button onclick="cerrarDetalles()" class="flex-1 bg-blue-600 text-white py-2 rounded-xl">Cerrar</button>
-      </div>
-      
-      <!-- Botones de edición en el modal -->
-      <div id="botonesEdicionModal" class="hidden space-y-2">
-        <!-- Botón rescatar producto -->
-        <button id="btnRescatarProducto" onclick="rescatarProducto()"
-          class="w-full bg-gray-500 text-white py-2 rounded-xl active:scale-95 transition">
-          ⏪ Rescatar
-        </button>
 
-        <!-- Botón cancelar orden -->
-        <button id="btnCancelarOrden"
-          onmousedown="activarCancelarOrden()"
-          onmouseup="cancelarCancelarOrden()"
-          ontouchstart="activarCancelarOrden()"
-          ontouchend="cancelarCancelarOrden()"
-          class="w-full bg-red-700 text-white py-2 rounded-xl active:scale-95 transition">
-          Cancelar orden (2s)
-        </button>
 
-        <!-- Botón pagado -->
-        <button id="btnPagadoOrden"
-          onmousedown="activarPagadoOrden()"
-          onmouseup="cancelarPagadoOrden()"
-          ontouchstart="activarPagadoOrden()"
-          ontouchend="cancelarPagadoOrden()"
-          class="w-full bg-green-600 text-white py-2 rounded-xl active:scale-95 transition">
-          Pagado (1.2s)
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="app.js"></script>
 </body>

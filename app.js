@@ -162,7 +162,7 @@ function renderOrden(orden) {
 
 /* navegación */
 function ocultarTodo() {
-  ["bienvenida","menuPrincipal"].forEach(id =>
+  ["bienvenida"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
 }
