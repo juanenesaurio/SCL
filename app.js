@@ -19,10 +19,6 @@ function irAProductos() {
   console.log('Sección productos mostrada');
 }
 
-function irALoVendido() {
-  alert('Ir a Lo vendido (pendiente: implementación de sección).');
-}
-
 function volverAMenuPrincipal() {
   ocultarTodo();
   document.getElementById("menuPrincipal").classList.remove("hidden");
