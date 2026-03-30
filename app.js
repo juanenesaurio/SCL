@@ -96,3 +96,13 @@ function actualizarListaCompra() {
   // Actualizar el total
   totalElement.textContent = totalCompra.toFixed(2);
 }
+
+// Función para cobrar
+function cobrar() {
+  if (listaCompra.length === 0) {
+    alert('La lista de compra está vacía.');
+    return;
+  }
+  alert(`Total a cobrar: $${totalCompra.toFixed(2)}\nLista: ${listaCompra.map(p => p.nombre).join(', ')}`);
+  // Aquí podrías agregar lógica para procesar el pago o enviar a backend
+}
