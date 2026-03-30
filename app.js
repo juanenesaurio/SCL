@@ -127,6 +127,8 @@ function guardar() {
   limpiarLista();
   // Actualizar interfaz de vendidos
   actualizarListaVendidos();
+  // Ocultar el texto de cambio
+  document.getElementById('cambioTexto').classList.add('hidden');
 }
 
 // Función para procesar el pago
