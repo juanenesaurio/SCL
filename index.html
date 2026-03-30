@@ -119,27 +119,37 @@
   </div>
 
   <div class="grid grid-cols-2 gap-4 max-w-md mx-auto overflow-y-auto" id="gridProductos">
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Leche ($7.50) L', 7.50)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Leche ($7.50) L
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Pan Dulce ($7.00)', 7.00)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Pan Dulce ($7.00)
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Bolillo ($2.50)', 2.50)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Bolillo ($2.50)
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Charola', 0)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Charola
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Azúcar', 0)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Azúcar
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Huevo', 0)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Huevo
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
+    <button onclick="agregarProducto('Maizena', 0)" class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Maizena
     </button>
+  </div>
+
+  <!-- Lista de compra -->
+  <div class="mt-8 bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto">
+    <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">Lista de Compra</h3>
+    <ul id="listaCompra" class="space-y-2 mb-4"></ul>
+    <div class="border-t pt-2">
+      <strong>Total: $<span id="totalCompra">0.00</span></strong>
+    </div>
+    <button onclick="limpiarLista()" class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg">Limpiar Lista</button>
   </div>
 
   <button onclick="volverAMenuPrincipal()" class="mt-8 mx-auto block boton-vino-sin-parpadeo text-white text-lg px-6 py-3">
