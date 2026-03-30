@@ -103,6 +103,25 @@ function cobrar() {
     alert('La lista de compra está vacía.');
     return;
   }
-  alert(`Total a cobrar: $${totalCompra.toFixed(2)}\nLista: ${listaCompra.map(p => p.nombre).join(', ')}`);
-  // Aquí podrías agregar lógica para procesar el pago o enviar a backend
+  // Ocultar la lista y mostrar la sección de pago
+  document.getElementById('seccionPago').classList.remove('hidden');
+}
+
+// Función para procesar el pago
+function procesarPago(monto) {
+  const cambio = monto - totalCompra;
+  const cambioTexto = document.getElementById('cambioTexto');
+  if (cambio >= 0) {
+    cambioTexto.textContent = `Cambio: $${cambio.toFixed(2)}`;
+    cambioTexto.classList.remove('hidden');
+    // Opcional: limpiar lista después de cobrar
+    // setTimeout(() => {
+    //   limpiarLista();
+    //   document.getElementById('seccionPago').classList.add('hidden');
+    //   cambioTexto.classList.add('hidden');
+    // }, 3000);
+  } else {
+    cambioTexto.textContent = 'Pago insuficiente';
+    cambioTexto.classList.remove('hidden');
+  }
 }
