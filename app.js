@@ -50,3 +50,49 @@ document.addEventListener('DOMContentLoaded', function() {
     busquedaInput.addEventListener('input', filtrarProductos);
   }
 });
+
+// Variables globales para la lista de compras
+let listaCompra = [];
+let totalCompra = 0;
+
+// Función para agregar un producto a la lista
+function agregarProducto(nombre, precio) {
+  // Agregar el producto a la lista
+  listaCompra.push({ nombre, precio });
+
+  // Actualizar el total
+  totalCompra += precio;
+
+  // Actualizar la interfaz
+  actualizarListaCompra();
+}
+
+// Función para limpiar la lista
+function limpiarLista() {
+  listaCompra = [];
+  totalCompra = 0;
+  actualizarListaCompra();
+}
+
+// Función para actualizar la lista en la interfaz
+function actualizarListaCompra() {
+  const listaElement = document.getElementById('listaCompra');
+  const totalElement = document.getElementById('totalCompra');
+
+  // Limpiar la lista actual
+  listaElement.innerHTML = '';
+
+  // Agregar cada producto
+  listaCompra.forEach((producto, index) => {
+    const li = document.createElement('li');
+    li.className = 'flex justify-between';
+    li.innerHTML = `
+      <span>${producto.nombre}</span>
+      <span>$${producto.precio.toFixed(2)}</span>
+    `;
+    listaElement.appendChild(li);
+  });
+
+  // Actualizar el total
+  totalElement.textContent = totalCompra.toFixed(2);
+}
