@@ -54,6 +54,7 @@ let totalCompra = 0;
 // Variables para lo vendido
 let productosVendidos = [];
 let contadorVendidos = 0;
+let totalVendido = 0;
 
 // Función para agregar un producto a la lista
 function agregarProducto(nombre, precio) {
@@ -103,9 +104,12 @@ function guardar() {
     alert('La lista de compra está vacía.');
     return;
   }
+  // Calcular el total de la lista actual
+  const totalLista = listaCompra.reduce((sum, p) => sum + p.precio, 0);
   // Agregar productos a vendidos
   productosVendidos.push(...listaCompra);
   contadorVendidos += listaCompra.length;
+  totalVendido += totalLista;
   // Limpiar lista de compra
   limpiarLista();
   // Actualizar interfaz de vendidos
@@ -135,6 +139,7 @@ function procesarPago(monto) {
 function actualizarListaVendidos() {
   const listaElement = document.getElementById('listaVendidos');
   const contadorElement = document.getElementById('contadorVendidos');
+  const totalElement = document.getElementById('totalVendido');
 
   // Limpiar la lista actual
   listaElement.innerHTML = '';
@@ -150,8 +155,9 @@ function actualizarListaVendidos() {
     listaElement.appendChild(li);
   });
 
-  // Actualizar contador
+  // Actualizar contador y total
   contadorElement.textContent = contadorVendidos;
+  totalElement.textContent = totalVendido.toFixed(2);
 }
 
 // Función para ir a Lo Vendido
