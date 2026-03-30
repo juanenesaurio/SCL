@@ -13,8 +13,10 @@ function irDirectoAMenu() {
 
 // Funciones de navegación
 function irAProductos() {
+  console.log('Ejecutando irAProductos');
   ocultarTodo();
   document.getElementById("productos").classList.remove("hidden");
+  console.log('Sección productos mostrada');
 }
 
 function irALoVendido() {
