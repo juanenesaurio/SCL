@@ -75,6 +75,16 @@ function limpiarLista() {
   actualizarListaCompra();
 }
 
+// Función para eliminar un producto individual
+function eliminarProducto(index) {
+  if (index >= 0 && index < listaCompra.length) {
+    const precioEliminado = listaCompra[index].precio;
+    listaCompra.splice(index, 1);
+    totalCompra -= precioEliminado;
+    actualizarListaCompra();
+  }
+}
+
 // Función para actualizar la lista en la interfaz
 function actualizarListaCompra() {
   const listaElement = document.getElementById('listaCompra');
@@ -86,10 +96,13 @@ function actualizarListaCompra() {
   // Agregar cada producto
   listaCompra.forEach((producto, index) => {
     const li = document.createElement('li');
-    li.className = 'flex justify-between';
+    li.className = 'flex justify-between items-center';
     li.innerHTML = `
       <span>${producto.nombre}</span>
-      <span>$${producto.precio.toFixed(2)}</span>
+      <div class="flex items-center">
+        <span>$${producto.precio.toFixed(2)}</span>
+        <button onclick="eliminarProducto(${index})" class="ml-2 text-red-500 hover:text-red-700">✖</button>
+      </div>
     `;
     listaElement.appendChild(li);
   });
