@@ -172,9 +172,27 @@
     <div id="cambioTexto" class="text-lg font-bold text-center hidden"></div>
   </div>
 
-  <button onclick="cobrar()" class="mt-8 mx-auto block boton-cobrar text-white text-lg px-6 py-3">
-    💰 Cobrar
+  <button onclick="guardar()" class="mt-8 mx-auto block boton-cobrar text-white text-lg px-6 py-3">
+    💰 Guardar
   </button>
+
+  <button onclick="volverAMenuPrincipal()" class="mt-8 mx-auto block boton-vino-sin-parpadeo text-white text-lg px-6 py-3">
+    ← Volver al Menú Principal
+  </button>
+</section>
+
+<!-- ================= LO VENDIDO ================= -->
+<section id="loVendido" class="hidden min-h-screen px-6 py-8" style="background-color: #E8DCC8;">
+  <h2 class="text-3xl font-bold mb-8 text-[#8B2E3C] text-center">Lo Vendido</h2>
+
+  <div class="bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto mb-8">
+    <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">Productos Vendidos</h3>
+    <ul id="listaVendidos" class="space-y-2"></ul>
+  </div>
+
+  <div class="text-center mb-8">
+    <span class="inline-block px-4 py-2 rounded-lg text-white text-lg font-bold" style="background-color: #C9A24A;">Vendido: <span id="contadorVendidos">0</span> productos</span>
+  </div>
 
   <button onclick="volverAMenuPrincipal()" class="mt-8 mx-auto block boton-vino-sin-parpadeo text-white text-lg px-6 py-3">
     ← Volver al Menú Principal

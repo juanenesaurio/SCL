@@ -1,6 +1,6 @@
 // Función para ocultar todas las secciones
 function ocultarTodo() {
-  ["bienvenida", "menuPrincipal", "productos"].forEach(id =>
+  ["bienvenida", "menuPrincipal", "productos", "loVendido"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
 }
@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
 let listaCompra = [];
 let totalCompra = 0;
 
+// Variables para lo vendido
+let productosVendidos = [];
+let contadorVendidos = 0;
+
 // Función para agregar un producto a la lista
 function agregarProducto(nombre, precio) {
   // Agregar el producto a la lista
@@ -97,14 +101,19 @@ function actualizarListaCompra() {
   totalElement.textContent = totalCompra.toFixed(2);
 }
 
-// Función para cobrar
-function cobrar() {
+// Función para guardar (antes cobrar)
+function guardar() {
   if (listaCompra.length === 0) {
     alert('La lista de compra está vacía.');
     return;
   }
-  // El menú de cambio está siempre visible, así que solo valida la lista
-  alert(`Total a cobrar: $${totalCompra.toFixed(2)}`);
+  // Agregar productos a vendidos
+  productosVendidos.push(...listaCompra);
+  contadorVendidos += listaCompra.length;
+  // Limpiar lista de compra
+  limpiarLista();
+  // Actualizar interfaz de vendidos
+  actualizarListaVendidos();
 }
 
 // Función para procesar el pago
@@ -124,4 +133,34 @@ function procesarPago(monto) {
     cambioTexto.textContent = 'Pago insuficiente';
     cambioTexto.classList.remove('hidden');
   }
+}
+
+// Función para actualizar la lista de vendidos
+function actualizarListaVendidos() {
+  const listaElement = document.getElementById('listaVendidos');
+  const contadorElement = document.getElementById('contadorVendidos');
+
+  // Limpiar la lista actual
+  listaElement.innerHTML = '';
+
+  // Agregar cada producto vendido
+  productosVendidos.forEach((producto, index) => {
+    const li = document.createElement('li');
+    li.className = 'flex justify-between';
+    li.innerHTML = `
+      <span>${producto.nombre}</span>
+      <span>$${producto.precio.toFixed(2)}</span>
+    `;
+    listaElement.appendChild(li);
+  });
+
+  // Actualizar contador
+  contadorElement.textContent = contadorVendidos;
+}
+
+// Función para ir a Lo Vendido
+function irALoVendido() {
+  ocultarTodo();
+  document.getElementById("loVendido").classList.remove("hidden");
+  actualizarListaVendidos(); // Asegurar que esté actualizado
 }
