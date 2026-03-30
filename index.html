@@ -159,13 +159,9 @@
     <button onclick="limpiarLista()" class="mt-4 w-full bg-red-500 text-white py-2 rounded-lg">Limpiar Lista</button>
   </div>
 
-  <button onclick="cobrar()" class="mt-8 mx-auto block boton-cobrar text-white text-lg px-6 py-3">
-    💰 Cobrar
-  </button>
-
-  <!-- Sección de pago -->
-  <div id="seccionPago" class="hidden mt-8 bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto">
-    <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">¿Con cuánto pagó el cliente?</h3>
+  <!-- Menú cambio -->
+  <div id="menuCambio" class="mt-8 bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto">
+    <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">¿Con cuánto paga el cliente?</h3>
     <div class="grid grid-cols-3 gap-2 mb-4">
       <button onclick="procesarPago(20)" class="py-2 px-4 rounded-lg text-white text-lg" style="background-color: #3FA16C;">$20</button>
       <button onclick="procesarPago(50)" class="py-2 px-4 rounded-lg text-white text-lg" style="background-color: #3FA16C;">$50</button>
@@ -175,6 +171,10 @@
     </div>
     <div id="cambioTexto" class="text-lg font-bold text-center hidden"></div>
   </div>
+
+  <button onclick="cobrar()" class="mt-8 mx-auto block boton-cobrar text-white text-lg px-6 py-3">
+    💰 Cobrar
+  </button>
 
   <button onclick="volverAMenuPrincipal()" class="mt-8 mx-auto block boton-vino-sin-parpadeo text-white text-lg px-6 py-3">
     ← Volver al Menú Principal

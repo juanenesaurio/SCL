@@ -103,8 +103,8 @@ function cobrar() {
     alert('La lista de compra está vacía.');
     return;
   }
-  // Ocultar la lista y mostrar la sección de pago
-  document.getElementById('seccionPago').classList.remove('hidden');
+  // El menú de cambio está siempre visible, así que solo valida la lista
+  alert(`Total a cobrar: $${totalCompra.toFixed(2)}`);
 }
 
 // Función para procesar el pago
