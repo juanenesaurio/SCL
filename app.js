@@ -138,7 +138,6 @@ function procesarPago(monto) {
 // Función para actualizar la lista de vendidos
 function actualizarListaVendidos() {
   const listaElement = document.getElementById('listaVendidos');
-  const contadorElement = document.getElementById('contadorVendidos');
   const totalElement = document.getElementById('totalVendido');
 
   // Limpiar la lista actual
@@ -155,8 +154,7 @@ function actualizarListaVendidos() {
     listaElement.appendChild(li);
   });
 
-  // Actualizar contador y total
-  contadorElement.textContent = contadorVendidos;
+  // Actualizar total
   totalElement.textContent = totalVendido.toFixed(2);
 }
 
