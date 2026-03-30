@@ -106,26 +106,38 @@
 <section id="productos" class="hidden min-h-screen px-6 py-8" style="background-color: #E8DCC8;">
   <h2 class="text-3xl font-bold mb-8 text-[#8B2E3C] text-center">Productos</h2>
 
-  <div class="grid grid-cols-2 gap-4 max-w-md mx-auto overflow-y-auto">
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+  <!-- Barra de búsqueda -->
+  <div class="flex justify-end mb-6">
+    <div class="relative">
+      <input type="text" id="busquedaProductos" placeholder="Buscar productos..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#8B2E3C] focus:border-transparent">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4 max-w-md mx-auto overflow-y-auto" id="gridProductos">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Leche ($7.50) L
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Pan Dulce ($7.00)
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Bolillo ($2.50)
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Charola
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Azúcar
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Huevo
     </button>
-    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3">
+    <button class="boton-vino-sin-parpadeo text-white text-lg px-4 py-3 producto-item">
       Maizena
     </button>
   </div>
