@@ -1,6 +1,6 @@
 // Función para ocultar todas las secciones
 function ocultarTodo() {
-  ["bienvenida", "menuPrincipal", "productos", "loVendido"].forEach(id =>
+  ["bienvenida", "menuPrincipal", "productos", "caja"].forEach(id =>
     document.getElementById(id).classList.add("hidden")
   );
 }
@@ -229,12 +229,33 @@ function actualizarListaVendidos() {
   totalElement.textContent = totalVendido.toFixed(2);
 }
 
-function listarVentas() {
-  // Placeholder: por ahora, alert
-  alert('Función para listar ventas desde Sheets próximamente.');
+// Función para cargar ventas desde Sheets
+async function cargarVentasDesdeSheets() {
+  try {
+    const response = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ action: "listarVentas" }),
+      mode: 'no-cors' // Cambiar si CORS se arregla
+    });
+    // Como no-cors, no podemos leer response, así que alert
+    alert('Solicitud enviada. Verifica en Sheets o espera respuesta.');
+  } catch (error) {
+    console.error('Error al cargar ventas:', error);
+    alert('Error al cargar ventas.');
+  }
 }
 
 // Función para mostrar ganancias netas
 function mostrarGanancias() {
   alert(`Ganancias netas: $${totalGanancias.toFixed(2)}`);
+}
+
+// Función para ir a Caja
+function irALoVendido() {
+  ocultarTodo();
+  document.getElementById("caja").classList.remove("hidden");
+  actualizarListaVendidos(); // Asegurar que esté actualizado
 }

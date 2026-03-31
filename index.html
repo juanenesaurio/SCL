@@ -182,12 +182,13 @@
 </section>
 
 <!-- ================= CAJA ================= -->
-<section id="loVendido" class="hidden min-h-screen px-6 py-8" style="background-color: #E8DCC8;">
+<section id="caja" class="hidden min-h-screen px-6 py-8" style="background-color: #E8DCC8;">
   <h2 class="text-3xl font-bold mb-8 text-[#8B2E3C] text-center">Caja</h2>
 
   <div class="bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto mb-8">
     <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">Productos en Caja</h3>
-    <ul id="listaVendidos" class="space-y-2"></ul>
+    <button onclick="cargarVentasDesdeSheets()" class="mb-4 w-full bg-blue-500 text-white py-2 rounded-lg">Cargar Ventas desde Sheets</button>
+    <ul id="listaVentasSheets" class="space-y-2"></ul>
   </div>
 
   <div class="text-center mb-8 flex justify-center items-center gap-4">
