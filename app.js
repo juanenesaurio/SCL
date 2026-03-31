@@ -20,7 +20,7 @@ async function fetchToGAS(data) {
       mode: 'no-cors'
     });
     console.log('Datos enviados exitosamente al backend');
-    alert('Venta guardada exitosamente. Verifica en Google Sheets.');
+    alert('Venta guardada');
   } catch (error) {
     console.error('Error al enviar datos:', error);
     alert('Error al guardar. Revisa la consola.');
@@ -227,6 +227,11 @@ function actualizarListaVendidos() {
 
   // Actualizar total
   totalElement.textContent = totalVendido.toFixed(2);
+}
+
+function listarVentas() {
+  // Placeholder: por ahora, alert
+  alert('Función para listar ventas desde Sheets próximamente.');
 }
 
 // Función para mostrar ganancias netas
