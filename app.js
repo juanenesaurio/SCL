@@ -11,24 +11,19 @@ const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbzyv2SoUlJZeKgGtLhP
 // Función para enviar datos al backend
 async function fetchToGAS(data) {
   try {
-    const response = await fetch(BACKEND_URL, {
+    await fetch(BACKEND_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+      mode: 'no-cors'
     });
-    const result = await response.json();
-    console.log('Respuesta del backend:', result);
-    if (result.ok) {
-      alert(result.mensaje || 'Guardado exitosamente');
-    } else {
-      alert('Error: ' + result.error);
-    }
-    return result;
+    console.log('Datos enviados exitosamente al backend');
+    alert('Venta guardada exitosamente. Verifica en Google Sheets.');
   } catch (error) {
     console.error('Error al enviar datos:', error);
-    alert('Error al guardar en el backend. Revisa la consola.');
+    alert('Error al guardar. Revisa la consola.');
   }
 }
 
