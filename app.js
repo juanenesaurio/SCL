@@ -81,11 +81,17 @@ let totalGanancias = 0;
 
 // Función para agregar un producto a la lista
 function agregarProducto(nombre, precio) {
-  // Agregar el producto a la lista
-  listaCompra.push({ nombre, precio });
-
-  // Actualizar el total
-  totalCompra += precio;
+  if (nombre === 'Leche 2L ($15)') {
+    // Agregar dos Leche 1L
+    for (let i = 0; i < 2; i++) {
+      listaCompra.push({ nombre: 'Leche 1L ($7.50)', precio: 7.50 });
+      totalCompra += 7.50;
+    }
+  } else {
+    // Para otros productos
+    listaCompra.push({ nombre, precio });
+    totalCompra += precio;
+  }
 
   // Actualizar la interfaz
   actualizarListaCompra();
@@ -143,23 +149,20 @@ function guardar() {
 
   // Procesar productos
   for (const producto of listaCompra) {
-    if (producto.nombre === 'Leche 2L ($15)') {
-      // Dividir en dos Leche 1L
-      for (let i = 0; i < 2; i++) {
-        productosVendidos.push({ nombre: 'Leche 1L ($7.50)', precio: 7.50 });
-        totalVendido += 7.50;
-        totalGanancias += 0.225; // 7.50 - 7.2750
+    if (producto.nombre === 'Leche 1L ($7.50)') {
+      // Enviar al backend
+      productosVendidos.push(producto);
+      totalVendido += producto.precio;
+      totalGanancias += 0.225; // 7.50 - 7.2750
 
-        // Enviar al backend
-        fetchToGAS({
-          id: 100,
-          producto: "Leche",
-          unidad: "Litro",
-          cantidad: 1,
-          precioPublico: 7.50,
-          costo: 7.2750
-        });
-      }
+      fetchToGAS({
+        id: 100,
+        producto: "Leche",
+        unidad: "Litro",
+        cantidad: 1,
+        precioPublico: 7.50,
+        costo: 7.2750
+      });
     } else {
       // Para otros productos, por ahora solo agregar sin enviar
       productosVendidos.push(producto);
