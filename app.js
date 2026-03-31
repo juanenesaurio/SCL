@@ -238,23 +238,53 @@ async function cargarVentasDesdeSheets() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ action: "listarVentas" }),
-      mode: 'no-cors' // Cambiar si CORS se arregla
+      mode: 'cors'
     });
-    // Como no-cors, no podemos leer response, así que alert
-    alert('Solicitud enviada. Verifica en Sheets o espera respuesta.');
+    if (!response.ok) {
+      throw new Error('Error en la respuesta del servidor');
+    }
+    const data = await response.json();
+    if (data.success) {
+      mostrarVentasEnCaja(data.ventas);
+    } else {
+      alert('Error al cargar ventas: ' + (data.error || 'Desconocido'));
+    }
   } catch (error) {
     console.error('Error al cargar ventas:', error);
-    alert('Error al cargar ventas.');
+    alert('Error al cargar ventas: ' + error.message);
   }
 }
 
-// Función para mostrar ganancias netas
-function mostrarGanancias() {
-  alert(`Ganancias netas: $${totalGanancias.toFixed(2)}`);
+// Función para mostrar ventas en la caja
+function mostrarVentasEnCaja(ventas) {
+  const tbody = document.querySelector('#listaVentasSheets tbody');
+  tbody.innerHTML = ''; // Limpiar tabla
+  let totalCaja = 0;
+  let totalGanancia = 0;
+
+  ventas.forEach(venta => {
+    if (venta.productos && Array.isArray(venta.productos)) {
+      venta.productos.forEach(producto => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="border border-gray-300 px-4 py-2">${producto.cantidad || ''}</td>
+          <td class="border border-gray-300 px-4 py-2">${producto.unidad || ''}</td>
+          <td class="border border-gray-300 px-4 py-2">${producto.producto || ''}</td>
+          <td class="border border-gray-300 px-4 py-2">$${producto.precio ? producto.precio.toFixed(2) : '0.00'}</td>
+        `;
+        tbody.appendChild(row);
+        totalCaja += producto.precio || 0;
+        totalGanancia += producto.ganancia || 0;
+      });
+    }
+  });
+
+  document.getElementById('totalVendido').textContent = totalCaja.toFixed(2);
+  document.getElementById('gananciaNeta').textContent = totalGanancia.toFixed(2);
 }
 
 // Función para ir a Caja
-function irALoVendido() {
+function irACaja() {
   ocultarTodo();
   document.getElementById("caja").classList.remove("hidden");
   actualizarListaVendidos(); // Asegurar que esté actualizado

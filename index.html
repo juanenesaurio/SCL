@@ -104,8 +104,8 @@
     🥛 Productos
   </button>
 
-  <button onclick="irALoVendido()" class="boton-vino-sin-parpadeo text-white text-xl px-6 py-3 w-full max-w-md">
-    🧮 Caja hoy
+  <button onclick="irACaja()" class="boton-vino-sin-parpadeo text-white text-xl px-6 py-3 w-full max-w-md">
+    🧾💻 Caja
   </button>
 </section>
 
@@ -185,15 +185,27 @@
 <section id="caja" class="hidden min-h-screen px-6 py-8" style="background-color: #E8DCC8;">
   <h2 class="text-3xl font-bold mb-8 text-[#8B2E3C] text-center">Caja</h2>
 
-  <div class="bg-white text-gray-900 rounded-lg p-4 max-w-md mx-auto mb-8">
+  <div class="bg-white text-gray-900 rounded-lg p-4 max-w-4xl mx-auto mb-8">
     <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">Productos en Caja</h3>
     <button onclick="cargarVentasDesdeSheets()" class="mb-4 w-full bg-blue-500 text-white py-2 rounded-lg">Cargar Ventas desde Sheets</button>
-    <ul id="listaVentasSheets" class="space-y-2"></ul>
+    <table id="listaVentasSheets" class="w-full table-auto border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-gray-100">
+          <th class="border border-gray-300 px-4 py-2">Cantidad</th>
+          <th class="border border-gray-300 px-4 py-2">Unidad</th>
+          <th class="border border-gray-300 px-4 py-2">Producto</th>
+          <th class="border border-gray-300 px-4 py-2">Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Filas se agregarán aquí -->
+      </tbody>
+    </table>
   </div>
 
   <div class="text-center mb-8 flex justify-center items-center gap-4">
     <span class="inline-block px-4 py-2 rounded-lg text-white text-lg font-bold" style="background-color: #C9A24A;">Caja hoy: $<span id="totalVendido">0.00</span></span>
-    <button onclick="mostrarGanancias()" class="px-4 py-2 rounded-lg text-white text-lg font-bold" style="background-color: #3FA16C;">Ganancias netas</button>
+    <span class="inline-block px-4 py-2 rounded-lg text-white text-lg font-bold" style="background-color: #3FA16C;">Ganancia neta: $<span id="gananciaNeta">0.00</span></span>
   </div>
 
   <button onclick="volverAMenuPrincipal()" class="mt-8 mx-auto block boton-vino-sin-parpadeo text-white text-lg px-6 py-3">
