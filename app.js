@@ -6,7 +6,7 @@ function ocultarTodo() {
 }
 
 // Backend URL
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbz4pfw4_r35B7cyhiV7ifJ1sRDGIprfA0TCToUTS_yKi3lBwlCtnc1fkdZj3VsHwmzX7Q/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxWCRTKjYRgXzMuUH5uU28m6B1FB0qeCRW17Qe6VvP5B4hewTgqWMb7AgDBqBbO59zU/exec';
 
 // Función para enviar datos al backend
 async function fetchToGAS(data) {
