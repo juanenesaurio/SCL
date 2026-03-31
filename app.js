@@ -6,20 +6,26 @@ function ocultarTodo() {
 }
 
 // Backend URL
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxWCRTKjYRgXzMuUH5uU28m6B1FB0qeCRW17Qe6VvP5B4hewTgqWMb7AgDBqBbO59zU/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbxS0Sx9EVGfrIrbC1xZEn2O7OzgkrNH9CnWPaqNTwabK4u2UNsMRSOjJwkT26haZ5KZXg/exec';
 
 // Función para enviar datos al backend
 async function fetchToGAS(data) {
   try {
-    await fetch(BACKEND_URL, {
+    const response = await fetch(BACKEND_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-      mode: 'no-cors'
     });
-    console.log('Datos enviados exitosamente al backend');
+    const result = await response.json();
+    console.log('Respuesta del backend:', result);
+    if (result.ok) {
+      alert(result.mensaje || 'Guardado exitosamente');
+    } else {
+      alert('Error: ' + result.error);
+    }
+    return result;
   } catch (error) {
     console.error('Error al enviar datos:', error);
     alert('Error al guardar en el backend. Revisa la consola.');
@@ -147,30 +153,36 @@ function guardar() {
   }
 
   // Procesar productos
-  for (const producto of listaCompra) {
+  listaCompra.forEach(producto => {
     if (producto.nombre === 'Leche 1L ($7.50)') {
-      // Enviar al backend
       productosVendidos.push(producto);
       totalVendido += producto.precio;
-      totalGanancias += 0.225; // 7.50 - 7.2750
-
-      fetchToGAS({
-        id: 100,
-        producto: "Leche",
-        unidad: "Litro",
-        cantidad: 1,
-        precioPublico: 7.50,
-        costo: 7.2750
-      });
+      totalGanancias += 0.225;
     } else {
       // Para otros productos, por ahora solo agregar sin enviar
       productosVendidos.push(producto);
       totalVendido += producto.precio;
       // Sin ganancia por ahora
     }
+  });
+
+  // Enviar al backend solo productos de leche
+  const productosLeche = listaCompra
+    .filter(p => p.nombre === 'Leche 1L ($7.50)')
+    .map(p => ({
+      id: 100,
+      producto: "Leche",
+      unidad: "Litro",
+      cantidad: 1,
+      precioPublico: 7.50,
+      costo: 7.2750
+    }));
+
+  if (productosLeche.length > 0) {
+    fetchToGAS({ action: "guardarVenta", productos: productosLeche });
   }
 
-  contadorVendidos += listaCompra.length; // Ajustar si es necesario
+  contadorVendidos += listaCompra.length;
 
   // Limpiar lista de compra
   limpiarLista();
