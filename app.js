@@ -5,6 +5,28 @@ function ocultarTodo() {
   );
 }
 
+// Backend URL
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbywWAl97nJjKS7f1dD6bOLxpeXjLXE1KocOOPnCBbEJI4oZwkTbV58i1WRhRRThODmvPQ/exec';
+
+// Función para enviar datos al backend
+async function fetchToGAS(data) {
+  try {
+    const response = await fetch(BACKEND_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    console.log('Respuesta del backend:', result);
+    return result;
+  } catch (error) {
+    console.error('Error al enviar datos:', error);
+    alert('Error al guardar en el backend. Revisa la consola.');
+  }
+}
+
 // Función para ir directo al menú principal (fondo beige)
 function irDirectoAMenu() {
   ocultarTodo();
@@ -55,6 +77,7 @@ let totalCompra = 0;
 let productosVendidos = [];
 let contadorVendidos = 0;
 let totalVendido = 0;
+let totalGanancias = 0;
 
 // Función para agregar un producto a la lista
 function agregarProducto(nombre, precio) {
@@ -117,12 +140,36 @@ function guardar() {
     alert('La lista de compra está vacía.');
     return;
   }
-  // Calcular el total de la lista actual
-  const totalLista = listaCompra.reduce((sum, p) => sum + p.precio, 0);
-  // Agregar productos a vendidos
-  productosVendidos.push(...listaCompra);
-  contadorVendidos += listaCompra.length;
-  totalVendido += totalLista;
+
+  // Procesar productos
+  for (const producto of listaCompra) {
+    if (producto.nombre === 'Leche 2L ($15)') {
+      // Dividir en dos Leche 1L
+      for (let i = 0; i < 2; i++) {
+        productosVendidos.push({ nombre: 'Leche 1L ($7.50)', precio: 7.50 });
+        totalVendido += 7.50;
+        totalGanancias += 0.225; // 7.50 - 7.2750
+
+        // Enviar al backend
+        fetchToGAS({
+          id: 100,
+          producto: "Leche",
+          unidad: "Litro",
+          cantidad: 1,
+          precioPublico: 7.50,
+          costo: 7.2750
+        });
+      }
+    } else {
+      // Para otros productos, por ahora solo agregar sin enviar
+      productosVendidos.push(producto);
+      totalVendido += producto.precio;
+      // Sin ganancia por ahora
+    }
+  }
+
+  contadorVendidos += listaCompra.length; // Ajustar si es necesario
+
   // Limpiar lista de compra
   limpiarLista();
   // Actualizar interfaz de vendidos
@@ -173,9 +220,7 @@ function actualizarListaVendidos() {
   totalElement.textContent = totalVendido.toFixed(2);
 }
 
-// Función para ir a Lo Vendido
-function irALoVendido() {
-  ocultarTodo();
-  document.getElementById("loVendido").classList.remove("hidden");
-  actualizarListaVendidos(); // Asegurar que esté actualizado
+// Función para mostrar ganancias netas
+function mostrarGanancias() {
+  alert(`Ganancias netas: $${totalGanancias.toFixed(2)}`);
 }
