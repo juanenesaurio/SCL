@@ -6,7 +6,7 @@ function ocultarTodo() {
 }
 
 // Backend URL
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbzyv2SoUlJZeKgGtLhPuQhmxpnHHm7pd-upF55K1Uv4onMTHzMAJJOAC3_Olj2CvMDUPw/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbyTdsfAiNa2PB7i3oYTVpNIDpcidQyeivWIAkE8pBVujVCpLOm7mZUAvkjNXf91zj3e9w/exec';
 
 // Función para enviar datos al backend
 async function fetchToGAS(data) {
@@ -263,20 +263,16 @@ function mostrarVentasEnCaja(ventas) {
   let totalGanancia = 0;
 
   ventas.forEach(venta => {
-    if (venta.productos && Array.isArray(venta.productos)) {
-      venta.productos.forEach(producto => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td class="border border-gray-300 px-4 py-2">${producto.cantidad || ''}</td>
-          <td class="border border-gray-300 px-4 py-2">${producto.unidad || ''}</td>
-          <td class="border border-gray-300 px-4 py-2">${producto.producto || ''}</td>
-          <td class="border border-gray-300 px-4 py-2">$${producto.precio ? producto.precio.toFixed(2) : '0.00'}</td>
-        `;
-        tbody.appendChild(row);
-        totalCaja += producto.precio || 0;
-        totalGanancia += producto.ganancia || 0;
-      });
-    }
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="border border-gray-300 px-2 py-2">${venta.cantidad || ''}</td>
+      <td class="border border-gray-300 px-2 py-2">${venta.unidad || ''}</td>
+      <td class="border border-gray-300 px-2 py-2">${venta.producto || ''}</td>
+      <td class="border border-gray-300 px-2 py-2">$${venta.precioPublico ? venta.precioPublico.toFixed(2) : '0.00'}</td>
+    `;
+    tbody.appendChild(row);
+    totalCaja += venta.precioPublico || 0;
+    totalGanancia += venta.ganancia || 0;
   });
 
   document.getElementById('totalVendido').textContent = totalCaja.toFixed(2);
@@ -288,4 +284,5 @@ function irACaja() {
   ocultarTodo();
   document.getElementById("caja").classList.remove("hidden");
   actualizarListaVendidos(); // Asegurar que esté actualizado
+  cargarVentasDesdeSheets(); // Cargar ventas automáticamente
 }

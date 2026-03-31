@@ -105,7 +105,7 @@
   </button>
 
   <button onclick="irACaja()" class="boton-vino-sin-parpadeo text-white text-xl px-6 py-3 w-full max-w-md">
-    🧾💻 Caja
+    🧾 Caja
   </button>
 </section>
 
@@ -187,20 +187,21 @@
 
   <div class="bg-white text-gray-900 rounded-lg p-4 max-w-4xl mx-auto mb-8">
     <h3 class="text-xl font-bold mb-4 text-[#8B2E3C]">Productos en Caja</h3>
-    <button onclick="cargarVentasDesdeSheets()" class="mb-4 w-full bg-blue-500 text-white py-2 rounded-lg">Cargar Ventas desde Sheets</button>
-    <table id="listaVentasSheets" class="w-full table-auto border-collapse border border-gray-300">
-      <thead>
-        <tr class="bg-gray-100">
-          <th class="border border-gray-300 px-4 py-2">Cantidad</th>
-          <th class="border border-gray-300 px-4 py-2">Unidad</th>
-          <th class="border border-gray-300 px-4 py-2">Producto</th>
-          <th class="border border-gray-300 px-4 py-2">Precio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Filas se agregarán aquí -->
-      </tbody>
-    </table>
+    <div class="overflow-x-auto">
+      <table id="listaVentasSheets" class="w-full table-auto border-collapse border border-gray-300 text-sm">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 px-2 py-2">Cantidad</th>
+            <th class="border border-gray-300 px-2 py-2">Unidad</th>
+            <th class="border border-gray-300 px-2 py-2">Producto</th>
+            <th class="border border-gray-300 px-2 py-2">Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas se agregarán aquí -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="text-center mb-8 flex justify-center items-center gap-4">
